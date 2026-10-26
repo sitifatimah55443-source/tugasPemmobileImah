@@ -1,0 +1,37 @@
+class StudentCard {
+  final String nim;
+  String nama;
+  final String prodi;
+  int _totalSks = 0;
+
+  StudentCard(this.nim, this.nama, this.prodi) {
+    if (nim.length < 7) {
+      print("NIM tidak valid");
+    }
+  }
+
+  int get totalSks => _totalSks;
+  String get status => _totalSks > 0 ? "Aktif" : "Baru";
+
+  void ambilSks(int jumlah) {
+    if (jumlah > 0 && _totalSks + jumlah <= 24) {
+      _totalSks += jumlah;
+    }
+  }
+}
+
+void main() {
+  var mhs = StudentCard("2409020074", "siti", "Teknologi Informasi");
+
+  // Menampilkan data mahasiswa
+  print("NIM: ${mhs.nim}");
+  print("Nama: ${mhs.nama}");
+  print("Prodi: ${mhs.prodi}");
+  print("Status awal: ${mhs.status}");
+
+  print("------------------------");
+
+  mhs.ambilSks(20);
+  print("Total SKS: ${mhs.totalSks}");
+  print("Status sekarang: ${mhs.status}");
+}
